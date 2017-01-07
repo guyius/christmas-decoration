@@ -15,3 +15,8 @@ christmas decoration voting contest.
 /entrants (GET, no params needed).
 
 will return a json with an array of all the entrants in the db.
+
+
+## Demo on heroku:
+https://christmas-decoration.herokuapp.com to get the full app.
+https://christmas-decoration.herokuapp.com/entrants to get all entrants data.
