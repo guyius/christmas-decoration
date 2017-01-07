@@ -1,8 +1,11 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const server = require('http').createServer(app);
 const monk = require('monk');
 const db = monk(process.env.MONGOLAB_URI.trim());
 require('./votes-server')(server, db);
+
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');
