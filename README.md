@@ -12,5 +12,5 @@ christmas decoration voting contest.
 7. npm test will run all the tests.
 
 ## API's
-/entrants (GET).
-will return all the entrants in the db.
+/entrants (GET, no params needed). /n
+will return a json with an array of all the entrants in the db.
