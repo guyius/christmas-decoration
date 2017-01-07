@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
 app.get('/entrants', (req, res) => {
 	const collection = db.get('entrants');
-	collection.find({},{},(entrants) => {
+	collection.find({},{},(e, entrants) => {
 		res.send({"entrants": entrants});
 	});
 });
