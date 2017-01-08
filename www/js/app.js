@@ -5,37 +5,35 @@ const isWithinTimeFrame = (user) => {
 	return isWithinTimeFrame;
 }
 
-function socket () {
-	const socket = io.connect('localhost:3000');
-	let user;
-	socket.on('connect', () => {
+let user;
+
+const socket = io.connect('localhost:3000');
+socket.on('connect', () => {
+	user = {
+		voteCount: 0,
+		startDate: Date.now()
+	};
+});
+
+socket.on('voteUpdate', (data) => {
+	const elVotes = document.querySelector('.votes');
+	elVotes.innerText = data.voteCounter;
+});
+
+function voteIn(entrantId, vote) {
+	if(typeof user.voteCount === 'number' && user.voteCount < 3) {
+		user.voteCount++;
+		socket.emit('voteIn', {id: entrantId, voteValue: vote});
+	} else if (typeof user.voteCount === 'number' && user.voteCount === 3 && isWithinTimeFrame(user)) {
+		alert('to many votes come back in a few minute');
+	} else {
 		user = {
 			voteCount: 0,
 			startDate: Date.now()
 		};
-	});
-
-	socket.on('voteUpdate', (data) => {
-		console.log(data);
-	});
-
-	setInterval(() => {
-		if(typeof user.voteCount === 'number' && user.voteCount < 3) {
-			user.voteCount++;
-			socket.emit('voteIn', {_id:'5867b46bbb0bc8d3ca535c88', vote: 1});
-		} else if (typeof user.voteCount === 'number' && user.voteCount === 3 && isWithinTimeFrame(user)) {
-			console.log('to many votes come back in a few minute');
-		} else {
-			user = {
-				voteCount: 0,
-				startDate: Date.now()
-			};
-			socket.emit('voteIn', {_id:'5867b46bbb0bc8d3ca535c88', vote: 1});
-		}
-	}, 3000)
-};
-
-window.onload = socket;
+		socket.emit('voteIn', {id: entrantId, vote: vote});
+	}
+}
 
 function getData() {
 	fetch('entrants').then((res) => {
@@ -46,9 +44,7 @@ function getData() {
 }
 
 function initMap(users) {
-	const centerLat = 52.5211482;
-	const centerLng = 13.3884423;
-	const center = {lat: centerLat, lng: centerLng};
+	const center = {lat: 52.5191389, lng: 13.3865335};
 	const mapEl = document.querySelector('.app')
 	const map = new google.maps.Map(mapEl, {
 	    zoom: 14,
@@ -89,11 +85,21 @@ function handleEntrantUI(user) {
 	const elVotes = document.querySelector('.votes');
 	const elImg = document.querySelector('.image');
 	const elClose = document.querySelector('.close');
+	const thumbUp = document.querySelector('.up');
+	const thumbDown = document.querySelector('.down');
 	entrant.style.display = 'block';
 	elTitle.innerText = user.title;
 	elVotes.innerText = user.votes;
 	elImg.src = user.entrantImageUrl;
+	thumbUp.src = '../img/thumb-up.png';
+	thumbDown.src = '../img/thumb-down.png';
 	elClose.addEventListener('click', navigateToMap);
+	thumbUp.addEventListener('click', () => {
+		voteIn(user._id, 1);
+	});
+	thumbDown.addEventListener('click', () => {
+		voteIn(user._id, -1);
+	});
 }
 
 function goToEntrant(user) {

@@ -9,18 +9,19 @@ module.exports = ((server, db) => {
 		});
 
 		socket.on('voteIn', (voter) => {
+			console.log(voter);
 			const collection = db.get('entrants');
-			let newVoteCounter = voter.vote;
+			let newVoteCounter = voter.voteValue;
 
 			//ugly hack to prevent db handling in testing...
 			if(process.env.NODE_ENV.trim() !== 'dev') {
-				collection.findOne({_id: voter._id}).then((entrant) => {
+				collection.findOne({_id: voter.id}).then((entrant) => {
 					newVoteCounter += entrant.votes;
-					collection.update(voter._id, {$set: {votes: newVoteCounter}});
-					socket.broadcast.emit('voteUpdate', {id: voter._id, voteCounter: newVoteCounter});
+					collection.update(voter.id, {$set: {votes: newVoteCounter}});
+					socket.broadcast.emit('voteUpdate', {id: voter.id, voteCounter: newVoteCounter});
 				});
 			} else {
-				socket.broadcast.emit('voteUpdate', {id: voter._id, voteCounter: newVoteCounter + 1});
+				socket.broadcast.emit('voteUpdate', {id: voter.id, voteCounter: newVoteCounter + 1});
 			}
 		});
 	});

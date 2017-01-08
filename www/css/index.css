@@ -58,6 +58,21 @@ body {
     cursor: pointer;
 }
 
+.thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+}
+
+.up {
+    right: -60px;
+}
+
+.down {
+    left: -25px;
+}
+
 
 @keyframes fade {
     from { height: 500px; }
