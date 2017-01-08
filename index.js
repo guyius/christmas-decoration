@@ -5,7 +5,7 @@ const monk = require('monk');
 const db = monk(process.env.MONGOLAB_URI.trim());
 require('./votes-server')(server, db);
 
-app.use(express.static('public'));
+app.use(express.static('www'));
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');

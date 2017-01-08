@@ -15,19 +15,19 @@ MongoClient.connect(url, (err, db) => {
 				"title":"first-game",
 				"votes":1395,
 				"location":{"lat":52.50887,"lng":13.394553},
-				"entrantImageUrl": "https://cdn.pixabay.com/photo/2014/11/25/21/11/winter-545688_960_720.jpg"
+				"entrantImageUrl": "http://imanada.com/daut/as/f/2/20-mesmerizing-outdoor-christmas-lighting-ideas-top-dreamer-decorations-online-contest-winner-orange-ca_homes-decorated-for-christmas-ideas_ideas_menu-design-ideas-bathroom-designs-wall-bedroom-master.jpg"
 			},
 			{
 				"title":"second-game",
 				"votes":8,
 				"location":{"lat":52.511562,"lng":13.395509},
-				"entrantImageUrl": "https://cdn.pixabay.com/photo/2015/12/17/08/27/christmas-1097006_960_720.jpg"
+				"entrantImageUrl": "http://hcs435.com/wp-content/uploads/2016/11/homes-decorated-for-christmas-with-others-42710605.jpg"
 			},
 			{
 				"title":"third-game",
 				"votes": -4,
 				"location":{"lat":52.516941,"lng":13.392067},
-				"entrantImageUrl": "https://cdn.pixabay.com/photo/2014/12/02/22/54/christmas-house-554727_960_720.jpg"
+				"entrantImageUrl": "http://iranews.net/daut/as/f/f/fancy-ligthing-new-home-design-ideas-interior-lighting-showy-electrical-living-room-color-schemes-designs-fluorescent-decorating_homes-decorated-for-christmas-ideas_ideas_curtain-design-ideas-small-ba.jpg"
 			},
 			{
 				"title":"forth-game",
