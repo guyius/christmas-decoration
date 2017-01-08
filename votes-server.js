@@ -9,7 +9,6 @@ module.exports = ((server, db) => {
 		});
 
 		socket.on('voteIn', (voter) => {
-			console.log(voter);
 			const collection = db.get('entrants');
 			let newVoteCounter = voter.voteValue;
 

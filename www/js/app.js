@@ -7,7 +7,7 @@ const isWithinTimeFrame = (user) => {
 
 let user;
 
-const socket = io.connect('localhost:443');
+const socket = io.connect('54.243.231.184:443');
 socket.on('connect', () => {
 	user = {
 		voteCount: 0,
