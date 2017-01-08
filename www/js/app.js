@@ -3,10 +3,11 @@ const isWithinTimeFrame = (user) => {
 	const currentTime = Date.now();
 	let isWithinTimeFrame = currentTime - user.startDate > timeFrame ? false : true;
 	return isWithinTimeFrame;
-}
+};
 
 let user;
-const socket = io.connect(`localhost:${window.location.port}`);
+
+const socket = io.connect('localhost:443');
 socket.on('connect', () => {
 	user = {
 		voteCount: 0,
