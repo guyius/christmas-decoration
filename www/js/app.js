@@ -66,7 +66,8 @@ function initMap(users) {
 		    },
 		    title: user.title,
 		    icon: icon,
-			map: map
+			map: map,
+		    id: user._id
 		}).addListener('click', () => {
 		    mapEl.style.display = 'none';
 		    goToEntrant(user);
