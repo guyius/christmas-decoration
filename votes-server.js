@@ -17,10 +17,10 @@ module.exports = ((server, db) => {
 				collection.findOne({_id: voter.id}).then((entrant) => {
 					newVoteCounter += entrant.votes;
 					collection.update(voter.id, {$set: {votes: newVoteCounter}});
-					socket.broadcast.emit('voteUpdate', {id: voter.id, voteCounter: newVoteCounter});
+					socket.emit('voteUpdate', {id: voter.id, voteCounter: newVoteCounter});
 				});
 			} else {
-				socket.broadcast.emit('voteUpdate', {id: voter.id, voteCounter: newVoteCounter + 1});
+				socket.emit('voteUpdate', {id: voter.id, voteCounter: newVoteCounter + 1});
 			}
 		});
 	});
