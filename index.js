@@ -18,5 +18,5 @@ app.get('/entrants', (req, res) => {
 	});
 });
 
-server.listen(process.env.PORT || 443);
+server.listen(process.env.PORT || 3000);
 module.exports = server;
