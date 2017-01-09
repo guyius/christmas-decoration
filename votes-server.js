@@ -11,7 +11,7 @@ module.exports = ((server, db) => {
 		socket.on('voteIn', (voter) => {
 			const collection = db.get('entrants');
 			let newVoteCounter = voter.voteValue;
-
+			console.log(voter);
 			//ugly hack to prevent db handling in testing...
 			if(process.env.NODE_ENV.trim() !== 'dev') {
 				collection.findOne({_id: voter.id}).then((entrant) => {
